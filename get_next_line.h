@@ -6,7 +6,7 @@
 /*   By: kyamada <kyamada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 15:18:39 by kyamada           #+#    #+#             */
-/*   Updated: 2025/02/02 15:29:58 by kyamada          ###   ########.fr       */
+/*   Updated: 2025/02/11 15:53:48 by kyamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@
 # include <stdlib.h>
 # include <stdint.h>
 
-char				*ft_read(int fd);
+int					ft_search_next(char *bufp);
+char				*ft_read_and_join(int fd,char *bufp);
 char				*get_next_line(int fd);
 size_t				ft_strlen(const char *str);
 void				*ft_memcpy(void *dest, const void *src, size_t n);
