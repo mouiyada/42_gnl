@@ -6,7 +6,7 @@
 /*   By: kyamada <kyamada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 15:19:56 by kyamada           #+#    #+#             */
-/*   Updated: 2025/02/16 14:52:05 by kyamada          ###   ########.fr       */
+/*   Updated: 2025/02/16 15:11:16 by kyamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	ft_search_next(char *bufp)
 
 char	*ft_read_and_join(int fd, char *bufp)
 {
-	char	buf[BUFSIZ];
+	char	buf[BUFFER_SIZE];
 	ssize_t	count;
 	char	*tmp;
 
@@ -36,7 +36,7 @@ char	*ft_read_and_join(int fd, char *bufp)
 	{
 		if (ft_search_next(bufp))
 			break ;
-		count = read(fd, buf, BUFSIZ);
+		count = read(fd, buf, BUFFER_SIZE);
 		if (count < 0)
 		{
 			free(bufp);
@@ -82,7 +82,7 @@ char	*get_next_line(int fd)
 	static char	*str = NULL;
 	char		*line;
 
-	if (fd < 0 || BUFSIZ <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	if (!str)
 	{
