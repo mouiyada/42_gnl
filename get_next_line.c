@@ -6,7 +6,7 @@
 /*   By: kyamada <kyamada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 15:19:56 by kyamada           #+#    #+#             */
-/*   Updated: 2025/02/16 15:11:16 by kyamada          ###   ########.fr       */
+/*   Updated: 2025/04/09 19:12:42 by kyamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	ft_search_next(char *bufp)
 
 char	*ft_read_and_join(int fd, char *bufp)
 {
-	char	buf[BUFFER_SIZE];
+	char	buf[BUFFER_SIZE + 1];
 	ssize_t	count;
 	char	*tmp;
 
@@ -105,20 +105,40 @@ char	*get_next_line(int fd)
 	}
 	return (line);
 }
-// int main(void) {
-//     int fd;
+int	main(int argc, char **argv)
+{
+	int		fd;
+	char	*s;
 
-//     fd = open("test.txt", O_RDONLY);
-// 	if (fd == -1)
-//     {
-//         perror("Failed to open file");
-//         return (1);
-//     }
-// 	printf("%s\n", get_next_line(fd));
-// 	printf("%s\n", get_next_line(fd));
-// 	printf("%s\n", get_next_line(fd));
-// 	printf("%s\n", get_next_line(fd));
-// 	printf("%s\n", get_next_line(fd));
-// 	close(fd);
-// 	return 0;
-// }
+	(void)argc;
+	(void)argv;
+	fd = open(argv[1], O_RDONLY);
+	// fd = 0;
+	printf("BUFFER_SIZE = %d\n", BUFFER_SIZE);
+	while (1)
+	{
+		s = get_next_line(fd);
+		if (!s)
+		{
+			printf("%s\n", s);
+			break ;
+		}
+		printf("%s", s);
+		free(s);
+	}
+	close(fd);
+	fd = open(argv[1], O_RDONLY);
+	while (1)
+	{
+		s = get_next_line(fd);
+		if (!s)
+		{
+			printf("%s\n", s);
+			break ;
+		}
+		printf("%s", s);
+		free(s);
+	}
+	close(fd);
+	return (0);
+}
